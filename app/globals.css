@@ -285,6 +285,10 @@
   .library-title {
     @apply mt-2 text-3xl font-semibold text-white xs:text-5xl;
   }
+
+  .input-field-size{
+    @apply w-full;
+  }
 }
 
 @layer base {
