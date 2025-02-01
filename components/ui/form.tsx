@@ -3,7 +3,7 @@ import React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 
 export const Label: React.FC<{ className: string }> = ({

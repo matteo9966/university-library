@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/lib/utils";
 const Input: React.FC<ComponentProps<"input">> = (props) => {
   return (
     <input

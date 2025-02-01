@@ -5,7 +5,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen bg-pattern h-screen w-screen">
       <section className="flex-1 flex justify-center items-center">
-        <div className="flex flex-col rounded gradient-vertical p-10 w-[90%]">
+        <div className="flex flex-col rounded gradient-vertical p-10 w-full md:max-w-[500px]">
           <div className="flex gap-3 items-center">
             <Image
               src={"/icons/logo.svg"}
@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ></Image>
             <span className="text-white text-2xl">BookWise</span>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 ">
             {children}
           </div>
         </div>
