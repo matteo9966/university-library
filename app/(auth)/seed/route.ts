@@ -10,7 +10,7 @@ async function createUserTable() {
         password VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        univeristyIDNumber VARCHAR(255) NOT NULL,
+        univerisityidnumber VARCHAR(255) NOT NULL
     )`;
 }
 
@@ -27,9 +27,10 @@ export async function GET() {
       { status: 200 }
     );
   } catch (error) {
+    console.log(error);
     return Response.json(
       responseBuilder({
-        error: "Error creating table",
+        error: "Error creating table - " ,
         statusCode: 500,
         message: "Error creating table",
       }),

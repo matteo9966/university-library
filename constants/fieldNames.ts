@@ -3,12 +3,12 @@ export const FIELD_NAMES = {
   email: "Email",
   confirmPassword: "Confirm password",
   password: "Password",
-  univeristyIDNumber: "Upload University ID Card",
+  univerisityIDNumber: "Upload University ID Card",
 };
 export const FIELD_TYPES = {
   fullName: "text",
   email: "email",
   confirmPassword: "password",
   password: "password",
-  univeristyIDNumber: "text",
+  univerisityIDNumber: "text",
 };

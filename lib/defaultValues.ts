@@ -1,9 +1,9 @@
 
 
-export const signupDefaultValue = {
+export const signupDefaultValue:AuthCredentials & {confirmPassword:string} = {
   email: "",
   fullName: "",
-  univeristyIDNumber: "",
+  univerisityIDNumber: "",
   password: "",
   confirmPassword: "",
 };

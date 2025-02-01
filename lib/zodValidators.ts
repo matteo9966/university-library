@@ -6,7 +6,7 @@ export const signupValidatorSchema:ZodSchema = z
       .min(3, "Min length is 3 chars")
       .max(12, "Max length is 12 chars"),
     email: z.string().email("Should be valid email"),
-    univeristyIDNumber: z.coerce.number(),
+    univerisityIDNumber: z.coerce.number(),
     password: z.string().min(8),
     confirmPassword: z.string().min(8),
   })

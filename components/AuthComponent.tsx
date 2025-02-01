@@ -12,26 +12,26 @@ import {
   useForm,
   Path,
 } from "react-hook-form";
-import {  ZodSchema } from "zod";
+import { ZodSchema } from "zod";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants/fieldNames";
-
-
-
-
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function AuthComponent<T extends FieldValues>({
   formDefaultValue,
   schema,
   title,
   onSubmit,
-  footerSection
+  footerSection,
 }: {
   formDefaultValue: DefaultValues<T>;
   schema: ZodSchema;
-  title:string;
-  onSubmit:(data: FormData) => Promise<void>;
-  footerSection?:React.ReactNode
+  title: string;
+  onSubmit: (data: AuthCredentials) => Promise<{ success: boolean }>;
+  footerSection?: React.ReactNode;
 }) {
+  const router = useRouter();
+  const [formSubmitError,setFormSubmitError]  = useState<string|null>(null);
   const methods = useForm({
     defaultValues: formDefaultValue,
     resolver: zodResolver(schema),
@@ -40,7 +40,13 @@ export default function AuthComponent<T extends FieldValues>({
   const formstate = methods.formState;
 
   const onSubmitFn = async (data: any) => {
-    onSubmit(data);
+    const result = await onSubmit(data);
+    if (result.success) {
+      //TODO : show success toast
+      router.push("/sign-up/success");
+    }else{
+      setFormSubmitError("Something went wrong, please try again later.");
+    }
   };
 
   return (
@@ -91,13 +97,17 @@ export default function AuthComponent<T extends FieldValues>({
             );
           })}
         </div>
-
+        {formstate.isSubmitting && <div className="text-lg text-white">Form is being submitted....</div>}
+        {formSubmitError && <div className="text-lg text-destructive">{formSubmitError}</div>}
+        {footerSection && (
+          <div className="flex flex-col gap-4">{footerSection}</div>
+        )}
         <Button
-          disabled={!formstate.isValid}
+          disabled={!formstate.isValid || methods.formState.isSubmitting}
           variant={"outline"}
           size={"lg"}
+          
           rounded={"full"}
-
           className={clsx({
             "cursor-not-allowed bg-slate-500/20": !formstate.isValid,
           })}
