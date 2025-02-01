@@ -3,9 +3,9 @@ import React from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen bg-pattern h-screen w-screen">
-      <section className="flex-1 flex justify-center items-center">
-        <div className="flex flex-col rounded gradient-vertical p-10 w-full md:max-w-[500px]">
+    <div className="flex md:flex-row flex-col-reverse min-h-screen bg-pattern h-screen w-screen">
+      <section className="flex-1 flex justify-center mt-2 md:mt-0 md:items-center">
+        <div className="flex flex-col rounded gradient-vertical p-5 md:p-10 w-full md:max-w-[500px]">
           <div className="flex gap-3 items-center">
             <Image
               src={"/icons/logo.svg"}
