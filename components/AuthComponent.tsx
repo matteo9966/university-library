@@ -16,6 +16,7 @@ import { ZodSchema } from "zod";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants/fieldNames";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function AuthComponent<T extends FieldValues>({
   formDefaultValue,
@@ -23,13 +24,16 @@ export default function AuthComponent<T extends FieldValues>({
   title,
   onSubmit,
   footerSection,
+  authFormType,
 }: {
   formDefaultValue: DefaultValues<T>;
   schema: ZodSchema;
   title: string;
-  onSubmit: (data: AuthCredentials) => Promise<{ success: boolean }>;
+  onSubmit: (data: AuthCredentials) => Promise<{ success: boolean,message:string }>;
   footerSection?: React.ReactNode;
+  authFormType: "login" | "signup";
 }) {
+  const {toast} = useToast();
   const router = useRouter();
   const [formSubmitError,setFormSubmitError]  = useState<string|null>(null);
   const methods = useForm({
@@ -41,12 +45,40 @@ export default function AuthComponent<T extends FieldValues>({
 
   const onSubmitFn = async (data: any) => {
     const result = await onSubmit(data);
-    if (result.success) {
-      //TODO : show success toast
+
+    if(authFormType === "signup" && result.success){
+      toast({
+        title: "Success",
+        description: "You have successfully signed up",
+        variant:"success"
+      })
       router.push("/sign-up/success");
-    }else{
-      setFormSubmitError("Something went wrong, please try again later.");
+      return
     }
+    if(authFormType === "signup" && !result.success){
+      // setFormSubmitError(result.message);
+      toast({
+        title: "Something went wrong",
+        description: result.message,
+        variant: "destructive",
+      })
+      return
+    }
+    if(authFormType === "login" && !result.success){
+      toast({
+        title: "Something went wrong",
+        description: result.message,
+        variant: "destructive",
+      })
+      setFormSubmitError(result.message);
+      return
+    }
+    if(authFormType === "login" && result.success){
+      router.push("/");
+      return
+    }
+
+  
   };
 
   return (

@@ -10,6 +10,7 @@ const Page = () => {
       formDefaultValue={signupDefaultValue}
       schema={signupValidatorSchema}
       title="Sign up"
+      authFormType="signup"
       onSubmit={async (data) => {
         return signUpAction(data);
       }}

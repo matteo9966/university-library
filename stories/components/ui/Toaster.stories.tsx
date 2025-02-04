@@ -21,7 +21,7 @@ import { DEFAULT_VIEWPORT } from "@storybook/addon-viewport";
 */
 
 type StoryProps = ComponentProps<typeof Toaster> & {
-  variant: "destructive" | "default";
+  variant: "destructive" | "default"|"success";
   title: string;
   description: string;
 };
@@ -38,7 +38,7 @@ const meta: Meta = {
     viewport: { defaultViewport: DEFAULT_VIEWPORT },
   },
   argTypes: {
-    variant: { control: "select", options: ["default", "destructive"] },
+    variant: { control: "select", options: ["default", "destructive","success"] },
     title: { control: "text", description: "The title of the Toaster" },
     description: { control: "text", description: "The title of the Toaster" },
   },
@@ -57,6 +57,8 @@ export const Toast: Story = {
         itemID: id,
         description: _args.description,
         title: _args.title,
+        duration:100000
+        
       });
     };
 

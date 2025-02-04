@@ -1,7 +1,8 @@
 import { FC, ReactNode } from "react";
 import Header from "@/components/Header";
-
+import { redirect } from "next/navigation";
  const Layout: FC<{ children: ReactNode }> = ({ children }) => {
+
   return (
     <main className="root-container">
         <Header />

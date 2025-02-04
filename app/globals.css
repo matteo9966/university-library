@@ -30,6 +30,9 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --success:167, 96%, 78%;
+    --success-foreground:178, 96%, 10%;
+
   }
 
   .hide-scrollbar::-webkit-scrollbar {
@@ -67,6 +70,8 @@
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
+    --success:120, 100%, 25%;
+    --success-foreground:0, 0%, 0%;
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
