@@ -13,6 +13,7 @@ export const signUpAction = async (
   params: AuthCredentials
 ): Promise<{ success: boolean; message: string }> => {
   const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
+
   const { success } = await ratelimit.limit(ip);
   if (!success) {
     return {
@@ -53,6 +54,8 @@ export const signInWithCredentials = async (
   params: Pick<User, "email" | "password">
 ): Promise<{ success: boolean; message: string }> => {
   const { email, password } = params;
+  console.log("Headers:",[...(await headers()).entries()]
+ );
   const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
   if (!success) {
