@@ -42,6 +42,16 @@ interface BorrowBookParams {
 
 namespace NodeJS {
   interface ProcessEnv {
+    NEXT_PUBLIC_PUBLIC_KEY: string;
+    NEXT_PUBLIC_URL_ENDPOINT: string;
+    PRIVATE_KEY: string;
     DATABASE_URL: string;
+    AUTH_SECRET: string;
+    UPSTASH_URL: string;
+    UPSTASH_TOKEN: string;
+    QSTASH_URL: string;
+    QSTASH_TOKEN: string;
+    QSTASH_CURRENT_SIGNING_KEY: string;
+    QSTASH_NEXT_SIGNING_KEY: string;
   }
 }

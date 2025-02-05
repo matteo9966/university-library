@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { signOut } from "@/auth";
 const Header = () => {
   return (
     <header className="my-10 flex justify-between gap-5">
@@ -12,7 +13,14 @@ const Header = () => {
       <h1 className="text-white">BookWise</h1>
       <ul>
         <li>
-            <Button>Logout</Button>
+          <form
+            action={async () => {
+              "use server";
+              await signOut({ redirectTo: "/sign-in", redirect: true });
+            }}
+          >
+            <Button type="submit">Logout</Button>
+          </form>
         </li>
       </ul>
     </header>

@@ -6,10 +6,20 @@ import { hash } from "bcryptjs";
 import { User } from "../models/User";
 import { signIn } from "@/auth";
 import { CredentialsSignin } from "next-auth";
+import { headers } from "next/headers";
+import ratelimit from "../ratelimit";
 
 export const signUpAction = async (
   params: AuthCredentials
 ): Promise<{ success: boolean; message: string }> => {
+  const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
+  const { success } = await ratelimit.limit(ip);
+  if (!success) {
+    return {
+      success: false,
+      message: "Too many requests, please try again later.",
+    };
+  }
   const { email, fullName, password, univerisityIDNumber } = params;
 
   const result = await sql(get_user_count_by_email_query, [email]);
@@ -43,6 +53,14 @@ export const signInWithCredentials = async (
   params: Pick<User, "email" | "password">
 ): Promise<{ success: boolean; message: string }> => {
   const { email, password } = params;
+  const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
+  const { success } = await ratelimit.limit(ip);
+  if (!success) {
+    return {
+      success: false,
+      message: "Too many requests, please try again later.",
+    };
+  }
   try {
     const result = await signIn("credentials", {
       email,
