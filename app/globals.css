@@ -130,25 +130,13 @@
   }
 
   /* Book Cover */
-  .book-cover_extra_small {
-    @apply w-[28.95px] h-10;
-  }
 
-  .book-cover_small {
-    @apply w-[55px] h-[76px];
-  }
 
-  .book-cover_medium {
-    @apply w-[144px] h-[199px];
-  }
+ 
 
-  .book-cover_regular {
-    @apply xs:w-[174px] w-[114px] xs:h-[239px] h-[169px];
-  }
 
-  .book-cover_wide {
-    @apply xs:w-[296px] w-[256px] xs:h-[404px] h-[354px];
-  }
+
+
 
   /* Book List */
   .book-list {
@@ -299,6 +287,9 @@
 @layer utilities {
   .gradient-vertical {
     background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+  }
+  .gradient-vertical-light {
+    background: linear-gradient(180deg, #2d303c 0%, #1c212f 100%);
   }
 
   .gradient-gray {

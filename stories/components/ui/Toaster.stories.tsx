@@ -3,7 +3,7 @@ import { fn } from "@storybook/test";
 import { Meta, StoryObj } from "@storybook/react";
 import { ComponentProps, useId } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { DEFAULT_VIEWPORT } from "@storybook/addon-viewport";
+
 
 // import { ToastAction } from "@radix-ui/react-toast";
 // import {type Toast} from '@radix-ui/react-toast';
@@ -35,7 +35,7 @@ const meta: Meta = {
     description: "The description",
   },
   parameters: {
-    viewport: { defaultViewport: DEFAULT_VIEWPORT },
+  
   },
   argTypes: {
     variant: { control: "select", options: ["default", "destructive","success"] },

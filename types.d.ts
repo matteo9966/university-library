@@ -18,7 +18,7 @@ interface AuthCredentials {
   fullName: string;
   email: string;
   password: string;
-
+  universityCardUrl:string;
   univerisityIDNumber: string;
 }
 
@@ -54,4 +54,17 @@ namespace NodeJS {
     QSTASH_CURRENT_SIGNING_KEY: string;
     QSTASH_NEXT_SIGNING_KEY: string;
   }
+}
+
+interface Book {
+  title: string;
+  author: string;
+  genre: string;
+  rating: number;
+  coverUrl: string;
+  coverColor: string;
+  description: string;
+  totalCopies: number;
+  videoUrl: string;
+  summary: string;
 }

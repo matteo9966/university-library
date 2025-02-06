@@ -6,6 +6,7 @@ export const signupDefaultValue:AuthCredentials & {confirmPassword:string} = {
   univerisityIDNumber: "",
   password: "",
   confirmPassword: "",
+  universityCardUrl:""
 };
 
 export const signinDefaultValue = {
