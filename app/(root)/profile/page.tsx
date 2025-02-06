@@ -1,10 +1,12 @@
 import Booklist from "@/components/BookList";
+import BorrowedBooks from "@/components/BorrowedBooks";
 import UserProfileCard from "@/components/UserProfileCard";
 import { mockUser, sampleBooks } from "@/constants/mockedData";
 export default function Page() {
   return (
-    <main className="grid md:grid-cols-2 gap-5 grid-cols-1 grid-flow-row">
+    <main className="grid md:grid-cols-2 gap-20 grid-cols-1 grid-flow-row">
       <UserProfileCard user={mockUser} />
+      <BorrowedBooks/>
       <div className="col-span-2 mt-10">
         <Booklist
           

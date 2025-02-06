@@ -5,7 +5,7 @@ type Props = {
 };
 export default function BookCard({ book }: Props) {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <BookCover
         bookCoverUrl={book.coverUrl}
         variant="regular"
@@ -13,7 +13,7 @@ export default function BookCard({ book }: Props) {
         className=""
       ></BookCover>
 
-      <div className={cn("mt-4")}>
+      <div className={cn("mt-4","xs:w-[174px] w-[114px]")}>
         <p className="book-title">{book.title}</p>
         <p className="book-genre">{book.genre}</p>
       </div>

@@ -7,7 +7,7 @@ export default function UserProfileCard({
   user: Omit<AuthCredentials, "password">;
 }) {
   return (
-    <div className="relative p-10 gradient-vertical-light rounded-lg w-full">
+    <div className="relative card-background">
       <svg
         width="59"
         height="88"
