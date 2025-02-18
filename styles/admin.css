@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .admin-logo {
+    @apply border-dashed border py-6;
+    h1 {
+      @apply text-primary-admin text-2xl font-semibold;
+    }
+  }
+  .sidebar-item {
+    @apply rounded-xl;
+  }
+
+  li.selected {
+    @apply bg-primary-admin;
+    img {
+      /* fill: white; */
+      filter: invert() contrast(200%);
+    }
+    span {
+      filter: invert();
+    }
+  }
+}

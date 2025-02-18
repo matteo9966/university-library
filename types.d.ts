@@ -1,24 +1,26 @@
 interface Book {
-  id: string;
+  id: string | number;
   title: string;
-  author: string;
-  genre: string;
+  author_id: string | number;
+  genre: string | number;
+  price: string;
   rating: number;
-  totalCopies: number;
-  availableCopies: number;
   description: string;
-  coverColor: string;
-  coverUrl: string;
-  videoUrl: string;
+  total_copies: number;
+  available_copies?: number;
+  color: string;
+  cover: string;
+  video: string;
   summary: string;
-  createdAt: Date | null;
+  created_at: Date | null;
+  updated_at: Date | null;
 }
 
 interface AuthCredentials {
   fullName: string;
   email: string;
   password: string;
-  universityCardUrl:string;
+  universityCardUrl: string;
   univerisityIDNumber: string;
 }
 
@@ -53,18 +55,6 @@ namespace NodeJS {
     QSTASH_TOKEN: string;
     QSTASH_CURRENT_SIGNING_KEY: string;
     QSTASH_NEXT_SIGNING_KEY: string;
+    ENV: string;
   }
-}
-
-interface Book {
-  title: string;
-  author: string;
-  genre: string;
-  rating: number;
-  coverUrl: string;
-  coverColor: string;
-  description: string;
-  totalCopies: number;
-  videoUrl: string;
-  summary: string;
 }
