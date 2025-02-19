@@ -1,4 +1,4 @@
-CREATE DATABASE university_library;
+-- CREATE DATABASE university_library;
 
 CREATE TYPE user_role AS ENUM ('admin', 'user');
 CREATE TYPE user_status AS ENUM ('pending', 'subscribed');
@@ -32,11 +32,16 @@ CREATE TABLE IF NOT EXISTS categories(
     category_name VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS books_categories(
+    category_id INT NOT NULL,
+    book_id INT NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+
 CREATE TABLE IF NOT EXISTS books(
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    author_id INT NOT NULL,
-    genre INT NOT NULL,
     price NUMERIC(10,2) NOT NULL CHECK(price>0),
     description TEXT,
     color VARCHAR(255),
@@ -47,10 +52,14 @@ CREATE TABLE IF NOT EXISTS books(
     total_copies INT NOT NULL CHECK(total_copies>=0),
     available_copies INT NOT NULL CHECK(available_copies>=0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS authors_books(
+    author_id INT NOT NULL,
+    book_id INT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES authors(id),
-    FOREIGN KEY (genre) REFERENCES categories(category_id)
-    
+    FOREIGN KEY (book_id) REFERENCES book(id) 
 );
 
 
@@ -65,3 +74,11 @@ CREATE TABLE IF NOT EXISTS borrowed_books(
 );
 
 
+-- VIEWS 
+
+CREATE OR REPLACE VIEW admin_dashboard_user AS 
+select u.id, u.email, u.created_at,u.updated_at,u.full_name, u.role, u.status, u.university_card_image, u.univerisity_id_number, count(bb.borrowed_at) as borrowed from users as u
+left join borrowed_books  as bb 
+on u.id = bb.user_id 
+group by u.id, u.email, u.created_at,u.updated_at
+order by  borrowed

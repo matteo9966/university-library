@@ -13,6 +13,10 @@
     @apply rounded-xl;
   }
 
+  .admin-dashboard-main {
+    @apply p-5;
+  }
+
   li.selected {
     @apply bg-primary-admin;
     img {
@@ -21,6 +25,21 @@
     }
     span {
       filter: invert();
+    }
+  }
+
+  .card {
+    @apply rounded-lg bg-white flex items-center justify-center p-3;
+  }
+
+  .badge {
+    @apply rounded-2xl px-1.5 py-0.5 w-fit;
+    &.user {
+      @apply bg-violet-200 text-violet-600;
+    }
+
+    &.admin {
+      @apply bg-green-200 text-green-500;
     }
   }
 }

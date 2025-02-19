@@ -8,4 +8,4 @@ const get_user_by_email_query = `SELECT *
                     WHERE users.email=$1
                     LIMIT 1;`;
 
-export { get_user_count_by_email_query,get_user_by_email_query };
+export { get_user_count_by_email_query, get_user_by_email_query };

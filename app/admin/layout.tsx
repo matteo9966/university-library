@@ -1,3 +1,4 @@
+import Navbar from "@/components/admin/Navbar";
 import Sidebar from "@/components/admin/Sidebar";
 import "@/styles/admin.css";
 interface Props {
@@ -9,8 +10,9 @@ function Layout({ children }: Props) {
       <div className="max-w-[350px] flex-1">
         <Sidebar />
       </div>
-      <div className="flex-1 bg-primary-admin">
-        main-section
+      <div className="flex-1 bg-light-300 admin-dashboard-main">
+        <Navbar />
+
         {children}
       </div>
     </main>
