@@ -12,8 +12,7 @@ function Layout({ children }: Props) {
       </div>
       <div className="flex-1 bg-light-300 admin-dashboard-main">
         <Navbar />
-
-        {children}
+        <div className="mt-10">{children}</div>
       </div>
     </main>
   );
