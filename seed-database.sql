@@ -200,3 +200,55 @@ VALUES
         170,
         160
     );
+
+INSERT INTO
+    authors ("name", "birthdate", "nationality", "biography")
+VALUES
+    (
+        'J.K. Rowling',
+        '1965-07-31',
+        'British',
+        'Author of the Harry Potter series.'
+    ),
+    (
+        'George Orwell',
+        '1903-06-25',
+        'British',
+        'Known for "1984" and "Animal Farm".'
+    ),
+    (
+        'Jane Austen',
+        '1775-12-16',
+        'British',
+        'Famous for novels like "Pride and Prejudice".'
+    ),
+    (
+        'Mark Twain',
+        '1835-11-30',
+        'American',
+        'Author of "The Adventures of Tom Sawyer".'
+    ),
+    (
+        'Gabriel García Márquez',
+        '1927-03-06',
+        'Colombian',
+        'Wrote "One Hundred Years of Solitude".'
+    ),
+    (
+        'Haruki Murakami',
+        '1949-01-12',
+        'Japanese',
+        'Author of "Norwegian Wood" and "Kafka on the Shore".'
+    ),
+    (
+        'Fyodor Dostoevsky',
+        '1821-11-11',
+        'Russian',
+        'Known for "Crime and Punishment".'
+    ),
+    (
+        'Leo Tolstoy',
+        '1828-09-09',
+        'Russian',
+        'Wrote "War and Peace" and "Anna Karenina".'
+    );

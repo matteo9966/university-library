@@ -37,6 +37,16 @@ interface BookParams {
   summary: string;
 }
 
+interface Authors {
+  id: string;
+  name: string;
+  birthdate: Date;
+  nationality: string;
+  biography: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
 interface BorrowBookParams {
   bookId: string;
   userId: string;

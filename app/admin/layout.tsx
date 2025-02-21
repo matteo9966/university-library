@@ -10,7 +10,7 @@ function Layout({ children }: Props) {
       <div className="max-w-[350px] flex-1">
         <Sidebar />
       </div>
-      <div className="flex-1 bg-light-300 admin-dashboard-main">
+      <div className="flex-1 bg-light-300 dark:bg-dark-300 admin-dashboard-main">
         <Navbar />
         <div className="mt-10">{children}</div>
       </div>

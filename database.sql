@@ -82,3 +82,6 @@ left join borrowed_books  as bb
 on u.id = bb.user_id 
 group by u.id, u.email, u.created_at,u.updated_at
 order by  borrowed
+
+create or replace view authors_view as
+select * from authors;

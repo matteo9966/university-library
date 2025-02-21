@@ -12,21 +12,38 @@ import { cn } from "@/lib/utils";
 import { ColorInput } from "../ui/color";
 import { bookDefaultValues } from "@/constants/admin/bookFormDefaultValue";
 import { FIELD_NAMES, FieldTypes } from "@/constants/admin/bookformFieldNames";
+import { Textarea } from "../ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "../ui/button";
 
 type Props<P extends FieldValues> = {
-  onSubmit: VoidFunction;
   formDefaultValue: DefaultValues<typeof bookDefaultValues>;
+  authors: Authors[];
 };
 
 function BookForm<P extends FieldValues>({
-  onSubmit = () => {},
   formDefaultValue,
+  authors,
 }: Props<P>) {
   const { control, getFieldState, formState, getValues } = useForm({
     defaultValues: formDefaultValue,
   });
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      onSubmit={(e) => {
+        const formData = new FormData(e.target as HTMLFormElement);
+        e.preventDefault();
+        console.log(formData);
+        console.log(e);
+      }}
+      className="flex  flex-col gap-7"
+    >
       {Object.keys(formDefaultValue).map((key, id) => {
         //get the form input type
         let ControlInput: React.FC<
@@ -43,7 +60,12 @@ function BookForm<P extends FieldValues>({
           case "text":
             ControlInput = Input;
             break;
-
+          case "text-area":
+            ControlInput = Textarea as any;
+            break;
+          case "select":
+            ControlInput = selectAuthorInputHoc(authors) as any;
+            break;
           //   case "text-area"
           // ControlInput = 'text-area'
 
@@ -52,9 +74,12 @@ function BookForm<P extends FieldValues>({
             break;
         }
 
+        // create a select element that behaves like a
+
         return (
           <Controller
             name={key as Path<typeof FieldTypes>}
+            key={key}
             control={control}
             render={({
               field: { name, onBlur, onChange, ref, value, disabled },
@@ -67,6 +92,7 @@ function BookForm<P extends FieldValues>({
                   <Label htmlFor="testinp" className={cn("text-lg")}>
                     {FIELD_NAMES[key as keyof typeof FIELD_NAMES]}
                   </Label>
+
                   <ControlInput
                     id={name}
                     name={name}
@@ -75,7 +101,7 @@ function BookForm<P extends FieldValues>({
                     ref={ref}
                     value={value}
                     placeholder={FIELD_NAMES[key as keyof typeof FIELD_NAMES]}
-                    className=" bg-white dark:bg-dark-100 text-black dark:text-light-100 border"
+                    className="bg-opacity-100 bg-white dark:bg-dark-100 text-black dark:text-light-100 border placeholder:text-gray-400"
                   />
                   {error && error.message}
                 </div>
@@ -84,41 +110,39 @@ function BookForm<P extends FieldValues>({
           ></Controller>
         );
       })}
+      <Button variant={"default"} type="submit">
+        Submit
+      </Button>
 
-      {/* <Controller
-        name={"input" as Path<typeof bookDefaultValues>}
-        control={control}
-        render={({
-          field: { name, onBlur, onChange, ref, value, disabled },
-        }) => {
-          const state = getFieldState(name, formState);
-          const error = state.error;
-
-          return (
-            <div>
-              <Label htmlFor="testinp" className={cn("text-lg")}>
-                Label
-              </Label>
-              <Input
-                type="text"
-                name={name}
-                onBlur={onBlur}
-                onChange={onChange}
-                ref={ref}
-                value={value}
-                placeholder={""}
-                className=""
-              />
-              {error && error.message}
-            </div>
-          );
-        }}
-      ></Controller>
-      {} */}
-
-      {JSON.stringify(getValues())}
+      <pre>{JSON.stringify(getValues(), null, 2)}</pre>
     </form>
   );
 }
 
 export default BookForm;
+
+function selectAuthorInputHoc(authors: Authors[]) {
+  return function SelectInput(
+    props: React.DetailedHTMLProps<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    > & { onChange: (...event: any[]) => void; value: string }
+  ) {
+    return (
+      <Select onValueChange={props.onChange} defaultValue={props.value}>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a verified email to display" />
+        </SelectTrigger>
+        <SelectContent>
+          {authors.map((author) => {
+            return (
+              <SelectItem key={author.id} value={author.id}>
+                {author.name} - {author.id}{" "}
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </Select>
+    );
+  };
+}

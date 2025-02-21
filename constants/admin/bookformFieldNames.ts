@@ -10,7 +10,7 @@ export const FIELD_NAMES: Omit<
   description: "Description",
   total_copies: "Total copies",
   available_copies: "Available copies",
-  color: "Copies",
+  color: "Color",
   cover: "Cover",
   summary: "Summary",
 };

@@ -1,8 +1,10 @@
-"use client";
 import BookForm from "@/components/admin/BookForm";
-import { DefaultValues, FieldValues } from "react-hook-form";
+import sql from "@/lib/db";
 import { bookDefaultValues } from "@/constants/admin/bookFormDefaultValue";
 
-export default function Page() {
-  return <BookForm onSubmit={() => {}} formDefaultValue={bookDefaultValues} />;
+export default async function Page() {
+  const result: Authors[] = await sql`select * from authors_view`;
+  console.log(result);
+
+  return <BookForm formDefaultValue={bookDefaultValues} authors={result} />;
 }

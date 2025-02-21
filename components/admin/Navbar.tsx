@@ -1,3 +1,4 @@
+import { ThemeToggler } from "../ThemeToggler";
 import Search from "../ui/search";
 
 interface Props {
@@ -13,7 +14,10 @@ function Navbar() {
         </h1>
         <p className="text-slate-500">Monitor all your books from here</p>
       </div>
-      <Search />
+      <div className="flex gap-2 items-center">
+        <Search />
+        <ThemeToggler />
+      </div>
     </div>
   );
 }
